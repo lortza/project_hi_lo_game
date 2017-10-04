@@ -1,8 +1,7 @@
 require_relative 'game'
 
-def play_game
+def play_game(game = Game.new)
   if __FILE__ == $0
-    game = Game.new
     game.play
   end
 end
