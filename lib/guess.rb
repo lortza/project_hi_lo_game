@@ -29,6 +29,7 @@ class CorrectGuess < BaseGuess
 
   def to_s
     puts "You WIN! It was indeed #{value}!"
+    exit
   end
 end
 
