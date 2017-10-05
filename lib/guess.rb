@@ -11,6 +11,8 @@ module GuessFactory
 end
 
 class BaseGuess
+  attr_accessor :value
+
   def initialize(value)
     @value = value
   end
@@ -18,9 +20,6 @@ class BaseGuess
   def correct?
     false
   end
-  private
-
-  attr_reader :value
 end
 
 class CorrectGuess < BaseGuess

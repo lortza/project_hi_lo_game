@@ -25,22 +25,41 @@ end #GuessFactory
 
 
 describe BaseGuess do
+  let(:input_value) { 'some value' }
+  let(:base_guess) { BaseGuess.new(input_value) }
 
+  describe '#initialize' do
+    it('has a value') { expect(base_guess.value).to eq(input_value) }
+  end
+
+  describe '#correct?' do
+    it('returns false') { expect(base_guess.correct?).to eq(false) }
+  end
 end #BaseGuess
 
 
 describe CorrectGuess do
+  describe '#correct?' do
+    it 'returns true'
+  end
 
+  describe '#to_s' do
+    it "returns 'You WIN!"
+  end
 end #CorrectGuess
 
 
 describe HighGuess do
-
+  describe '#to_s' do
+    it "returns 'Go lower...'"
+  end
 end #HighGuess
 
 
 describe LowGuess do
-
+  describe '#to_s' do
+    it "returns 'Go higher...'"
+  end
 end #LowGuess
 
 
