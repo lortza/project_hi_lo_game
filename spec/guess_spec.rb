@@ -39,26 +39,38 @@ end #BaseGuess
 
 
 describe CorrectGuess do
+  let(:input_value) { 'some value' }
+  let(:correct_guess) { CorrectGuess.new(input_value) }
+
   describe '#correct?' do
-    it 'returns true'
+    it('returns true') { expect(correct_guess.correct?).to eq(true) }
   end
 
   describe '#to_s' do
-    it "returns 'You WIN!"
+    before { allow(STDOUT).to receive(:puts).and_return('You WIN!') }
+    it("returns 'You WIN!") { expect(correct_guess.to_s).to eq('You WIN!') }
   end
 end #CorrectGuess
 
 
 describe HighGuess do
+  let(:input_value) { 'some value' }
+  let(:high_guess) { HighGuess.new(input_value) }
+
   describe '#to_s' do
-    it "returns 'Go lower...'"
+    before { allow(STDOUT).to receive(:puts).and_return('Go lower') }
+    it("returns 'Go lower") { expect(high_guess.to_s).to eq('Go lower') }
   end
 end #HighGuess
 
 
 describe LowGuess do
+  let(:input_value) { 'some value' }
+  let(:low_guess) { LowGuess.new(input_value) }
+
   describe '#to_s' do
-    it "returns 'Go higher...'"
+    before { allow(STDOUT).to receive(:puts).and_return('Go higher') }
+    it("returns 'Go higher") { expect(low_guess.to_s).to eq('Go higher') }
   end
 end #LowGuess
 
