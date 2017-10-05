@@ -47,33 +47,7 @@ describe CorrectGuess do
   end
 
   describe '#to_s' do
-    before { allow(STDOUT).to receive(:puts).and_return('You WIN!') }
-    it("returns 'You WIN!") { expect(correct_guess.to_s).to eq('You WIN!') }
+    it 'exits the game'
   end
 end #CorrectGuess
-
-
-describe HighGuess do
-  let(:input_value) { 'some value' }
-  let(:high_guess) { HighGuess.new(input_value) }
-
-  describe '#to_s' do
-    before { allow(STDOUT).to receive(:puts).and_return('Go lower') }
-    it("returns 'Go lower") { expect(high_guess.to_s).to eq('Go lower') }
-  end
-end #HighGuess
-
-
-describe LowGuess do
-  let(:input_value) { 'some value' }
-  let(:low_guess) { LowGuess.new(input_value) }
-
-  describe '#to_s' do
-    before { allow(STDOUT).to receive(:puts).and_return('Go higher') }
-    it("returns 'Go higher") { expect(low_guess.to_s).to eq('Go higher') }
-  end
-end #LowGuess
-
-
-
 
