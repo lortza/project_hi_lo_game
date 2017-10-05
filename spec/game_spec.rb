@@ -32,24 +32,10 @@ describe Game do
   end
 
   describe '#play' do
-    it 'initiates game play'
-  end
-
-  describe '#lost_game?' do
-    subject { game.send(:lost_game?) }
-    context 'when the user has remaining guesses' do
-      it('returns false') { expect(subject).to eq(false) }
+    it 'initiates game play' do
+      allow(game).to receive(:remaining_guesses?).and_return(false, true)
+      game.play
     end
-  end
-
-  describe '#render_loss' do
-    it 'ends the game when guesses are exceeded'
-  end
-
-  describe '#remaining_guesses?' do
-    subject { game.send(:remaining_guesses?) }
-    it('returns true if there are remaining guesses') { expect(subject).to eq(true) }
-    it 'returns false if there are no remaining guesses'
   end
 
 end #Game
