@@ -2,7 +2,7 @@ require_relative 'guess'
 
 class Game
 
-  attr_reader :range_min, :range_max, :max_guesses, :correct_answer, :guess, :guess_count
+  attr_reader :range_min, :range_max, :max_guesses, :correct_answer, :guess_count
 
   def initialize
     @range_min = 1
@@ -16,16 +16,21 @@ class Game
     welcome_user
 
     while remaining_guesses?
-      offer_guess
+      guess = next_guess
+      check_guess(guess)
     end
   end
 
   private
 
-  def offer_guess
-    request_guess
-    guessed = GuessFactory.create(guess, correct_answer)
-    render_loss if lost_game? && !guessed.correct?
+  def next_guess
+    guess = GuessFactory.create(correct_answer)
+  end
+
+  def check_guess(guess)
+    lost_game! if lost_game? && !guess.correct?
+    won_game! if guess.correct?
+
     guessed.to_s
     @guess_count += 1
   end
@@ -39,15 +44,13 @@ class Game
     puts "You have #{max_guesses} guesses to find the number #{range_min}-#{range_max}"
   end
 
-  def request_guess
-    puts "Make a guess:"
-    print "> "
-    @guess = gets.chomp.to_i
-    puts "Your guess was #{@guess}!"
+  def lost_game!
+    puts "YOU LOSE! It was actually #{@correct_answer}."
+    exit
   end
 
-  def render_loss
-    puts "YOU LOSE! It was actually #{@correct_answer}."
+  def won_game!
+    puts "YOU WIN! It was indeed #{@correct_answer}!"
     exit
   end
 

@@ -1,5 +1,13 @@
+require 'guess_cli'
+
 module GuessFactory
-  def self.create(guess, correct_answer)
+  def self.create(correct_answer, guess_requestor = GuessCLI)
+    map_guess(guess_requestor.request_guess, correct_answer)
+  end
+
+  private
+
+  def self.map_guess(guess, correct_answer)
     if guess == correct_answer
       CorrectGuess.new(guess)
     elsif guess > correct_answer
@@ -8,6 +16,7 @@ module GuessFactory
       LowGuess.new(guess)
     end
   end
+
 end
 
 class BaseGuess
@@ -29,7 +38,6 @@ class CorrectGuess < BaseGuess
 
   def to_s
     puts "You WIN! It was indeed #{value}!"
-    exit
   end
 end
 

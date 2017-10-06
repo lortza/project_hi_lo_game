@@ -1,10 +1,20 @@
 require 'guess'
 
+class GuessCLIMock
+  def initialize(guess)
+    @guess = guess
+  end
+
+  def request_guess
+    @guess
+  end
+end
+
 describe GuessFactory do
   describe '.create' do
     let(:correct_answer) { 2 }
 
-    subject { GuessFactory.create(guess, correct_answer) }
+    subject { GuessFactory.create(correct_answer, GuessCLIMock.new(guess)) }
 
     describe 'when the guess is correct' do
       let(:guess) { 2 }
