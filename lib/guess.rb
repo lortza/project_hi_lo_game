@@ -1,4 +1,4 @@
-require 'guess_cli'
+require_relative 'guess_cli'
 
 module GuessFactory
   def self.create(correct_answer, guess_requestor = GuessCLI)
